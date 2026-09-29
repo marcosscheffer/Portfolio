@@ -3,19 +3,29 @@ import { useRef, useState } from 'react'
 import { ArrowUpRight, ChevronLeft, ChevronRight, Github, LockKeyhole, Maximize2, X } from 'lucide-react'
 import type { Project } from '../../types/project'
 import { ExternalLink } from './ExternalLink'
+import { ProjectSlides } from './ProjectSlides'
 
 export function ProjectCard({ project }: { project: Project }) {
   const { t } = useLanguage()
-  const [index, setIndex] = useState(0)
+  const [slide, setSlide] = useState<{ index: number; previous: number | null; direction: 'next' | 'previous'; step: number }>({ index: 0, previous: null, direction: 'next', step: 0 })
+  const { index } = slide
+  const navigate = (direction: 'next' | 'previous') => {
+    setSlide(current => ({
+      index: (current.index + (direction === 'next' ? 1 : -1) + project.screenshots.length) % project.screenshots.length,
+      previous: current.index,
+      direction,
+      step: current.step + 1,
+    }))
+  }
   const dialog = useRef<HTMLDialogElement>(null)
   const screenshot = project.screenshots[index]
 
   const controls = project.screenshots.length > 1 && (
     <div className="flex gap-2">
-      <button aria-label={`${t('Imagem anterior de')} ${project.name}`} onClick={() => setIndex((index - 1 + project.screenshots.length) % project.screenshots.length)}>
+      <button aria-label={`${t('Imagem anterior de')} ${project.name}`} onClick={() => navigate('previous')}>
         <ChevronLeft size={18} />
       </button>
-      <button aria-label={`${t('Próxima imagem de')} ${project.name}`} onClick={() => setIndex((index + 1) % project.screenshots.length)}>
+      <button aria-label={`${t('Próxima imagem de')} ${project.name}`} onClick={() => navigate('next')}>
         <ChevronRight size={18} />
       </button>
     </div>
@@ -26,7 +36,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="project-visual">
         {screenshot ? (
           <button className="screenshot-button" onClick={() => dialog.current?.showModal()} aria-label={`${t('Ampliar imagem de')} ${project.name}: ${t(screenshot.caption)}`}>
-            <img src={screenshot.src} alt={t(screenshot.alt)} width="1920" height="920" loading="lazy" />
+            <ProjectSlides screenshots={project.screenshots} {...slide} />
             <span className="screenshot-zoom"><Maximize2 size={16} />{' '}{t("Ampliar imagem")}</span>
           </button>
         ) : <div className="empty-image">{t("Capturas em preparação")}</div>}
@@ -51,7 +61,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <dialog ref={dialog} className="screenshot-dialog" aria-label={`${t('Galeria de')} ${project.name}`} onClick={event => { if (event.target === event.currentTarget) dialog.current?.close() }}>
           <div className="dialog-content">
             <div className="gallery-bar"><span>{project.name} / {t(screenshot.caption)}</span><button aria-label={t("Fechar imagem ampliada")} onClick={() => dialog.current?.close()}><X size={20} /></button></div>
-            <img src={screenshot.src} alt={t(screenshot.alt)} />
+            <ProjectSlides screenshots={project.screenshots} {...slide} />
             <div className="gallery-bar"><span aria-live="polite">{t("Imagem")}{' '}{index + 1}{' '}{t("de")}{' '}{project.screenshots.length}</span>{controls}</div>
           </div>
         </dialog>
