@@ -98,7 +98,7 @@ O contrato está em `src/types/project.ts`. `repositoryUrl`, `liveUrl`, `feature
 
 ## Screenshots do Estik
 
-As cinco telas fornecidas estão em `dashboard.png`, `chamados.png`, `unidades.png`, `setores.png` e `login.png`. As quatro telas internas foram editadas com IA para substituir identificação da conta, nomes e códigos de unidades, computador, especificações e data do registro por dados fictícios. São versões editadas para apresentação, não reproduções pixel a pixel. As legendas identificam os dados fictícios. A nova tela de login em tema escuro foi mantida como enviada, com campos vazios. Os originais com dados internos não são incluídos no projeto. Os SVGs iniciais permanecem disponíveis como ilustrações de reserva e não são usados na galeria. Para novas imagens revisadas, use por exemplo:
+As cinco telas fornecidas estão em `dashboard.png`, `chamados.png`, `unidades.png`, `setores.png` e `login.png`. As quatro telas internas foram editadas com IA para substituir identificação da conta, nomes e códigos de unidades, computador, especificações e data do registro por dados fictícios. São versões editadas para apresentação, não reproduções pixel a pixel. As legendas identificam os dados fictícios. A nova tela de login em tema escuro foi mantida como enviada, com campos vazios. Os originais com dados internos não são incluídos no projeto. O diagrama `architecture.svg` abre a galeria, seguido pelas cinco telas. O SVG de placeholder permanece como ilustração de reserva. Para novas imagens revisadas, use por exemplo:
 
 ```text
 src/assets/images/projects/estik/dashboard.webp

@@ -1,3 +1,4 @@
+import architecture from '../assets/images/projects/estik/architecture.svg'
 import type { Project } from '../types/project'
 import dashboard from '../assets/images/projects/estik/dashboard.png'
 import login from '../assets/images/projects/estik/login.png'
@@ -23,11 +24,12 @@ export const projects: Project[] = [
     // liveUrl: adicione apenas se houver uma demonstração pública segura.
     featured: true,
     screenshots: [
-      { src: dashboard, alt: 'Painel do Estik com resumo operacional e indicadores substituídos por dados de demonstração.', caption: '01 / Visão geral · Dados fictícios' },
-      { src: tickets, alt: 'Central de chamados do Estik com busca, filtros por prioridade e status e conta de demonstração.', caption: '02 / Chamados · Dados fictícios' },
-      { src: units, alt: 'Cadastro de unidades do Estik com nomes e códigos fictícios: Unidade Alfa e Unidade Beta.', caption: '03 / Unidades · Dados fictícios' },
-      { src: departments, alt: 'Setor de testes com computador fictício, especificações de exemplo e histórico de movimentação sanitizado.', caption: '04 / Setores e equipamentos · Dados fictícios' },
-      { src: login, alt: 'Tela de login do Estik em tema escuro, com campos de usuário e senha vazios.', caption: '05 / Login' },
+      { src: architecture, alt: 'Diagrama ilustrativo da arquitetura do Estik: React, Nginx, Spring Boot e PostgreSQL em containers Docker.', caption: '01 / Arquitetura da aplicação' },
+      { src: dashboard, alt: 'Painel do Estik com resumo operacional e indicadores substituídos por dados de demonstração.', caption: '02 / Visão geral · Dados fictícios' },
+      { src: tickets, alt: 'Central de chamados do Estik com busca, filtros por prioridade e status e conta de demonstração.', caption: '03 / Chamados · Dados fictícios' },
+      { src: units, alt: 'Cadastro de unidades do Estik com nomes e códigos fictícios: Unidade Alfa e Unidade Beta.', caption: '04 / Unidades · Dados fictícios' },
+      { src: departments, alt: 'Setor de testes com computador fictício, especificações de exemplo e histórico de movimentação sanitizado.', caption: '05 / Setores e equipamentos · Dados fictícios' },
+      { src: login, alt: 'Tela de login do Estik em tema escuro, com campos de usuário e senha vazios.', caption: '06 / Login' },
     ],
   },
 ]
