@@ -1,6 +1,6 @@
 # Marcos Scheffer — Portfólio
 
-Portfólio profissional em português, com foco em desenvolvimento backend e full stack. Inclui apresentação, tecnologias, projetos, experiência e contato em uma página responsiva, com tema escuro, navegação sticky e suporte a movimento reduzido.
+Portfólio profissional em português, com foco em desenvolvimento backend Java. As skills exibidas seguem as listadas no perfil do GitHub. Inclui apresentação, tecnologias, projetos, experiência e contato em uma página responsiva, com tema escuro, navegação sticky e suporte a movimento reduzido.
 
 ## Tecnologias
 

@@ -12,13 +12,13 @@ const metadata: Record<Language, { htmlLang: string; locale: string; title: stri
     htmlLang: 'pt-BR',
     locale: 'pt_BR',
     title: `${profile.displayName} | Desenvolvedor Backend Java`,
-    description: `Portfólio de ${profile.name}. Desenvolvimento backend com Java, Spring Boot, PostgreSQL e Docker, e aplicações full stack com React.`,
+    description: `Portfólio de ${profile.name}, desenvolvedor backend Java. APIs REST com Spring Boot, PostgreSQL, Flyway e Docker.`,
   },
   en: {
     htmlLang: 'en',
     locale: 'en_US',
     title: `${profile.displayName} | Java Backend Developer`,
-    description: `${profile.name}’s portfolio. Backend development with Java, Spring Boot, PostgreSQL and Docker, plus full stack applications with React.`,
+    description: `${profile.name}’s portfolio, Java backend developer. REST APIs with Spring Boot, PostgreSQL, Flyway and Docker.`,
   },
 }
 

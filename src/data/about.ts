@@ -5,7 +5,7 @@ export const aboutParagraphs = {
   introHighlight: 'desenvolvimento, suporte técnico e infraestrutura.',
   body: [
     'Meu foco é o backend Java: APIs REST com Spring Boot, Spring Security e Spring Data JPA, bancos PostgreSQL e MySQL versionados com Flyway, arquitetura hexagonal e processamento em lote com Spring Batch.',
-    'Também construo a interface em React e cuido da entrega com Docker e Nginx. Gosto de entender o problema por inteiro e construir soluções claras, funcionais e fáceis de manter.',
+    'Cuido também da entrega com Docker e Docker Compose. Gosto de entender o problema por inteiro e construir soluções claras, funcionais e fáceis de manter.',
   ],
 }
 

@@ -6,7 +6,7 @@ export const profile = {
   name: 'Marcos Vinicius Scheffer da Conceição',
   displayName: 'Marcos Vinicius Scheffer',
   shortName: 'Marcos Scheffer',
-  role: 'Desenvolvedor Backend Java / Full Stack',
+  role: 'Desenvolvedor Backend Java',
   location: 'Santa Catarina, Brasil',
   availability: 'Em busca de estágio ou vaga júnior em backend Java',
   github: 'https://github.com/marcosscheffer',
@@ -14,5 +14,5 @@ export const profile = {
   email: 'marcosscheffer2989@gmail.com',
   website: 'https://portfolio-drab-nine-34.vercel.app',
   /** Tecnologias exibidas na janela de código do Hero. */
-  heroStack: ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docker', 'React'],
+  heroStack: ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docker', 'Maven'],
 }

@@ -25,7 +25,7 @@ function CodeWindow() {
         <p className="code-comment">{t('// Muito além de escrever código.')}</p>
         <p><b>var</b> developer = Developer.builder()</p>
         <p className="indent">.name(<em>"{profile.shortName}"</em>)</p>
-        <p className="indent">.focus(<em>"Backend Java & Full Stack"</em>)</p>
+        <p className="indent">.focus(<em>"Backend Java"</em>)</p>
         <p className="indent">.stack(List.of(</p>
         {rows.map((row, rowIndex) => (
           <p className="indent-double" key={row.join()}>
@@ -57,7 +57,7 @@ export function Hero() {
         <h1>Marcos Vinicius<br /><span>Scheffer da Conceição<span className="accent">.</span></span></h1>
         <p className="hero-role">{t(profile.role)}</p>
         <p className="hero-description">
-          {t('Transformando desafios reais em aplicações bem construídas. APIs com Java e Spring Boot, dados em PostgreSQL e entrega com Docker, além de interfaces em React quando o projeto pede.')}
+          {t('Transformando desafios reais em aplicações bem construídas. APIs REST com Java e Spring Boot, dados em PostgreSQL e entrega com Docker.')}
         </p>
         <ul className="hero-meta">
           <li><span className="status-dot" /> {t(profile.availability)}</li>
@@ -72,7 +72,7 @@ export function Hero() {
       <CodeWindow />
 
       <div className="hero-bottom">
-        <span>BACKEND FIRST. FULL STACK MINDSET.</span>
+        <span>JAVA. SPRING BOOT. BACKEND.</span>
         <a href={`#${sectionIds.about}`}>{t('Explore o portfólio')} <ArrowDown size={16} /></a>
       </div>
     </section>

@@ -20,7 +20,7 @@ export interface Project {
   /** Galeria opcional. Projetos sem capturas são exibidos em cards compactos. */
   screenshots?: ProjectScreenshot[]
   repositoryUrl?: string
-  /** Repositórios relacionados, como backend e frontend separados. */
+  /** Repositórios relacionados, como o repositório da API. */
   relatedLinks?: ProjectLink[]
   liveUrl?: string
   featured?: boolean

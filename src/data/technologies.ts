@@ -1,4 +1,4 @@
-import { Braces, Database, PanelsTopLeft, Workflow } from 'lucide-react'
+import { Braces, Database, Sparkles, Workflow } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 export interface TechnologyGroup {
@@ -8,29 +8,30 @@ export interface TechnologyGroup {
   items: string[]
 }
 
+/** Skills listadas no perfil do GitHub (github.com/marcosscheffer). */
 export const technologies: TechnologyGroup[] = [
   {
     icon: Braces,
     title: 'Backend',
     description: 'A lógica por trás de tudo.',
-    items: ['Java', 'Spring Boot', 'Spring Security', 'Spring Data JPA', 'Spring Batch', 'REST APIs', 'JWT', 'Python', 'Flask'],
-  },
-  {
-    icon: PanelsTopLeft,
-    title: 'Frontend',
-    description: 'Interfaces que conectam.',
-    items: ['React', 'TypeScript', 'Tailwind CSS', 'HTML', 'CSS'],
+    items: ['Java', 'Spring Boot', 'Spring Security', 'Spring Data JPA', 'Spring Batch', 'REST APIs'],
   },
   {
     icon: Database,
     title: 'Banco de dados',
     description: 'Dados bem estruturados.',
-    items: ['PostgreSQL', 'MySQL', 'Flyway', 'SQL'],
+    items: ['PostgreSQL', 'MySQL', 'Flyway'],
   },
   {
     icon: Workflow,
-    title: 'DevOps & ferramentas',
+    title: 'Ferramentas',
     description: 'Do código à aplicação.',
-    items: ['Docker', 'Docker Compose', 'Maven', 'Swagger / OpenAPI', 'Nginx', 'Git', 'GitHub', 'Linux'],
+    items: ['Docker', 'Docker Compose', 'Git', 'Maven', 'Swagger / OpenAPI'],
+  },
+  {
+    icon: Sparkles,
+    title: 'Também já usei',
+    description: 'Experiência complementar.',
+    items: ['Python', 'Flask'],
   },
 ]

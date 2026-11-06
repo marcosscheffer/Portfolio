@@ -10,7 +10,6 @@ export function Footer() {
     <footer className="shell footer">
       <p>
         © {new Date().getFullYear()} {profile.shortName}
-        <span>{t('Construído com React & TypeScript.')}</span>
       </p>
       <a href={`#${sectionIds.hero}`}>{t('De volta ao topo')} <ArrowUp size={16} /></a>
     </footer>
