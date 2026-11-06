@@ -28,7 +28,7 @@ export const projects: Project[] = [
     featured: true,
     internal: true,
     screenshots: [
-      { src: architecture, alt: 'Diagrama ilustrativo da arquitetura do Estik: API Spring Boot e PostgreSQL em containers Docker.', caption: '01 / Arquitetura da aplicação' },
+      { src: architecture, alt: 'Diagrama da arquitetura hexagonal da API do Estik: módulos, camadas, PostgreSQL com Flyway e backup em Docker Compose.', caption: '01 / Arquitetura da API' },
       { src: dashboard, alt: 'Painel inicial do Estik com contadores de chamados, distribuição por status e gráfico de chamados por mês.', caption: '02 / Painel · Dados fictícios' },
       { src: tickets, alt: 'Lista de chamados do Estik com filtros por status, prioridade, área e unidade.', caption: '03 / Chamados · Dados fictícios' },
       { src: ticketChat, alt: 'Detalhe de um chamado em andamento, com histórico de status e chat em tempo real entre solicitante e técnico.', caption: '04 / Chamado com chat em tempo real · Dados fictícios' },

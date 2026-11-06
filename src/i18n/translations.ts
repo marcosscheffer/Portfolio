@@ -2,8 +2,8 @@
 // ao adicionar ou alterar um texto em português, inclua a tradução aqui.
 // Textos sem tradução usam o original como fallback.
 export const english: Record<string, string> = {
-  '01 / Arquitetura da aplicação': '01 / Application architecture',
-  'Diagrama ilustrativo da arquitetura do Estik: API Spring Boot e PostgreSQL em containers Docker.': 'Illustrative diagram of the Estik architecture: Spring Boot API and PostgreSQL in Docker containers.',
+  '01 / Arquitetura da API': '01 / API architecture',
+  'Diagrama da arquitetura hexagonal da API do Estik: módulos, camadas, PostgreSQL com Flyway e backup em Docker Compose.': 'Diagram of the Estik API hexagonal architecture: modules, layers, PostgreSQL with Flyway and backups on Docker Compose.',
   'Sobre': 'About',
   'Tecnologias': 'Technologies',
   'Projetos': 'Projects',
