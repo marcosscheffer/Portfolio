@@ -1,16 +1,14 @@
+import { useLanguage } from '../../i18n/LanguageContext'
+import type { CarouselState } from '../../hooks/useCarousel'
 import type { ProjectScreenshot } from '../../types/project'
-import { useLanguage } from '../../hooks/useLanguage'
 
-interface Props {
+interface Props extends CarouselState {
   screenshots: ProjectScreenshot[]
-  index: number
-  previous: number | null
-  direction: 'next' | 'previous'
-  step: number
 }
 
 export function ProjectSlides({ screenshots, index, previous, direction, step }: Props) {
   const { t } = useLanguage()
+  const current = screenshots[index]
 
   return (
     <span className="project-slides" key={step} data-direction={direction}>
@@ -20,7 +18,7 @@ export function ProjectSlides({ screenshots, index, previous, direction, step }:
         </span>
       )}
       <span className={`project-slide${previous !== null ? ' slide-in' : ''}`}>
-        <img src={screenshots[index].src} alt={t(screenshots[index].alt)} width="1920" height="1360" loading="lazy" />
+        <img src={current.src} alt={t(current.alt)} loading="lazy" decoding="async" />
       </span>
     </span>
   )

@@ -32,22 +32,24 @@ O build verifica TypeScript e gera os arquivos estáticos em `dist/`. O preview 
 ## Estrutura
 
 ```text
+.github/workflows/ci.yml       # Lint e build a cada push e pull request
 public/favicon.svg
 src/
-├── assets/images/projects/estik/
-│   ├── dashboard.png
-│   ├── chamados.png
-│   ├── unidades.png
-│   ├── setores.png
-│   └── login.png
+├── assets/images/projects/    # Capturas e diagramas (WebP/SVG)
 ├── components/
-│   ├── layout/           # Header e Footer
-│   ├── sections/         # Seções da página
-│   └── ui/               # Links, títulos e card com galeria
-├── data/
-│   ├── profile.ts
-│   ├── projects.ts
-│   └── technologies.ts
+│   ├── layout/                # Header e Footer
+│   ├── projects/              # ProjectCard, galeria e slides
+│   ├── sections/              # Seções da página (Hero, Sobre, Projetos…)
+│   └── ui/                    # Peças genéricas: links, títulos, tags
+├── data/                      # Todo o conteúdo editável do site
+│   ├── profile.ts             # Nome, cargo, disponibilidade e contatos
+│   ├── about.ts               # Texto "Sobre mim" e princípios
+│   ├── technologies.ts        # Grupos de tecnologias
+│   ├── projects.ts            # Projetos exibidos
+│   ├── experience.ts          # Experiência e formação
+│   └── navigation.ts          # Ids das seções e itens do menu
+├── hooks/useCarousel.ts       # Estado da galeria de imagens
+├── i18n/                      # Contexto, provider e traduções PT/EN
 ├── types/project.ts
 ├── App.tsx
 ├── main.tsx
@@ -56,49 +58,46 @@ Dockerfile
 nginx.conf
 ```
 
-Pastas de hooks, utils e ícones próprios podem ser adicionadas quando necessárias; não há abstrações vazias. Tailwind atende a utilidades de layout; o CSS centraliza a identidade visual e os breakpoints.
+Os componentes só renderizam; textos, links e listas ficam em `src/data/`. Para mudar o conteúdo do portfólio, normalmente basta editar esses arquivos e acrescentar a tradução em `src/i18n/translations.ts`.
 
 ## Idiomas
 
 O seletor PT/EN no cabeçalho alterna os textos do portfólio, controles, legendas, textos alternativos e metadados no navegador. Português é o padrão; a preferência é salva em `localStorage` quando disponível. As capturas do Estik permanecem em português, como no sistema original.
 
-As traduções em inglês ficam em `src/data/translations.ts`; o texto em português é a chave. Ao adicionar projetos ou alterar descrições, inclua a tradução correspondente nesse arquivo. Textos sem tradução usam o original como fallback. O HTML estático mantém SEO em português; os metadados em inglês são aplicados no cliente, sem criar rotas separadas.
+As traduções em inglês ficam em `src/i18n/translations.ts`; o texto em português é a chave. Ao adicionar projetos ou alterar descrições, inclua a tradução correspondente nesse arquivo. Textos sem tradução usam o original como fallback. O HTML estático mantém SEO em português; os metadados em inglês são aplicados no cliente, sem criar rotas separadas.
 
 ## Alterar contatos
 
-Edite `src/data/profile.ts` para alterar `github`, `linkedin` e `email`, já preenchidos com os contatos fornecidos por Marcos. Informe e-mail sem o prefixo `mailto:`. Se algum campo ficar vazio, o canal será exibido como indisponível, sem link falso.
+Edite `src/data/profile.ts` para alterar `github`, `linkedin`, `email`, `website`, localização, disponibilidade e a stack exibida no Hero (`heroStack`), já preenchidos com os contatos fornecidos por Marcos. Informe e-mail sem o prefixo `mailto:`. Se algum campo ficar vazio, o canal será exibido como indisponível, sem link falso.
 
 Nome e cargo também ficam nesse arquivo. O nome de apresentação no Hero possui quebra editorial em `src/components/sections/Hero.tsx`; ajuste-o se mudar a identidade do portfólio. Metadados ficam em `index.html`.
 
 ## Adicionar um projeto
 
-Edite apenas a lista em `src/data/projects.ts`, importando as imagens locais. Todos os cards são renderizados automaticamente. Exemplo de estrutura para um futuro projeto (substitua textos e links antes de publicar):
+Edite apenas a lista em `src/data/projects.ts`. O contrato está em `src/types/project.ts`.
 
-```tsx
-import screenshot from '../assets/images/projects/spelltrade/overview.webp'
+- Projetos **com** `screenshots` aparecem em destaque, com galeria (setas, teclado e imagem ampliada).
+- Projetos **sem** `screenshots` aparecem em cards compactos, em grade de duas colunas.
+- `repositoryUrl`, `relatedLinks` (ex.: repositório da API), `liveUrl`, `highlights`, `featured` e `internal` são opcionais. `internal: true` exibe o aviso de uso interno sem demonstração pública.
 
-// Adicione ao array projects:
+```ts
 {
-  id: 'spelltrade',
-  name: 'Spelltrade',
-  category: 'Aplicação web',
-  description: 'Resumo real do projeto.',
-  details: 'Descreva o problema, sua contribuição e a solução.',
-  technologies: ['React', 'TypeScript'],
-  repositoryUrl: '',
-  // liveUrl: inclua somente quando houver uma URL pública real.
-  featured: false,
-  screenshots: [
-    { src: screenshot, alt: 'Descrição objetiva da tela apresentada.', caption: '01 / Visão geral' },
-  ],
+  id: 'meu-projeto',
+  name: 'Meu Projeto',
+  category: 'API REST · Projeto de estudo',
+  description: 'Resumo em uma linha.',
+  details: 'Problema, sua contribuição e a solução.',
+  highlights: ['Funcionalidade relevante.'],
+  technologies: ['Java', 'Spring Boot'],
+  repositoryUrl: 'https://github.com/marcosscheffer/meu-projeto',
 }
 ```
 
-O contrato está em `src/types/project.ts`. `repositoryUrl`, `liveUrl`, `featured` e a lista de funcionalidades `highlights` são opcionais. Sem repositório, “Ver código” fica indisponível; “Ver projeto” só aparece quando há `liveUrl`. A galeria aceita quantas imagens forem necessárias e apresenta controles apenas quando existem pelo menos duas. Clique na imagem para ampliar; use Escape ou o botão fechar para retornar. Uma lista vazia mostra um espaço reservado.
+Os projetos atuais (Estik v2, SpellTrade Batch e Clinic API) foram descritos a partir dos READMEs públicos dos repositórios em 06/11/2026.
 
 ## Screenshots do Estik
 
-As cinco telas fornecidas estão em `dashboard.png`, `chamados.png`, `unidades.png`, `setores.png` e `login.png`. As quatro telas internas foram editadas com IA para substituir identificação da conta, nomes e códigos de unidades, computador, especificações e data do registro por dados fictícios. São versões editadas para apresentação, não reproduções pixel a pixel. As legendas identificam os dados fictícios. A nova tela de login em tema escuro foi mantida como enviada, com campos vazios. Os originais com dados internos não são incluídos no projeto. O diagrama `architecture.svg` abre a galeria, seguido pelas cinco telas. O SVG de placeholder permanece como ilustração de reserva. Para novas imagens revisadas, use por exemplo:
+As cinco telas fornecidas estão em `dashboard.webp`, `chamados.webp`, `unidades.webp`, `setores.webp` e `login.webp` (convertidas de PNG para WebP, de ~4 MB para ~180 KB no total). As quatro telas internas foram editadas com IA para substituir identificação da conta, nomes e códigos de unidades, computador, especificações e data do registro por dados fictícios. São versões editadas para apresentação, não reproduções pixel a pixel. As legendas identificam os dados fictícios. A nova tela de login em tema escuro foi mantida como enviada, com campos vazios. Os originais com dados internos não são incluídos no projeto. O diagrama `architecture.svg` abre a galeria, seguido pelas cinco telas. Para novas imagens revisadas, use por exemplo:
 
 ```text
 src/assets/images/projects/estik/dashboard.webp
@@ -121,9 +120,9 @@ Prefira WebP otimizado e preserve a proporção original das capturas. As imagen
 
 ### Conteúdo técnico do Estik
 
-A descrição combina o objetivo informado por Marcos com a leitura do código público em 29/09/2026: gestão de chamados com prioridade e busca, computadores vinculados a unidades/setores, registros de movimentação e autenticação JWT com regras por perfil. A infraestrutura declara serviços de backup, Prometheus e Grafana. Isso descreve a implementação disponível; não é uma certificação de segurança nem uma validação do ambiente de produção.
+A descrição segue a versão 2 do Estik, conforme os READMEs públicos lidos em 06/11/2026: ciclo completo de chamados, chat e notificações em tempo real via SSE, computadores, estoque e movimentações, autenticação JWT com refresh token revogável e hierarquia de perfis, arquitetura hexagonal por módulos, Flyway e Docker Compose com redes segmentadas e backups. As capturas de tela foram feitas antes da v2 e podem não refletir todas as telas atuais. Isso descreve a implementação disponível; não é uma certificação de segurança nem uma validação do ambiente de produção.
 
-Fontes: [orquestração do Estik](https://github.com/marcosscheffer/estik-project), [backend](https://github.com/marcosscheffer/estik-api) e [frontend](https://github.com/marcosscheffer/estik-react). Foram lidas as branches atuais dos subprojetos, que podem diferir dos commits fixados pelos submódulos.
+Fontes: [orquestração do Estik v2](https://github.com/marcosscheffer/estik-project-v2) e [API](https://github.com/marcosscheffer/estik-java-api-v2). Foram lidas as branches atuais dos subprojetos, que podem diferir dos commits fixados pelos submódulos.
 
 **Revise antes de adicionar arquivos ao repositório:** remova usuários, senhas, tokens, IPs, domínios internos, nomes da organização, dados reais, credenciais e variáveis de ambiente, inclusive em URLs visíveis e metadados das imagens. Use dados inteiramente fictícios. Não basta ocultar informações com CSS; todo arquivo publicado é acessível. O Estik não inclui demonstração pública. Só preencha o repositório após confirmar que seu conteúdo pode ser divulgado.
 
@@ -149,7 +148,7 @@ Não são necessárias variáveis de ambiente nem `vercel.json`. A navegação u
 
 ## SEO e acessibilidade
 
-Edite título, descrição e Open Graph básico em `index.html`. Depois de ter um domínio público, você pode acrescentar `og:url` e uma URL canônica verdadeira. Substitua `public/favicon.svg` para mudar o favicon; se alterar o formato ou caminho, atualize o HTML. Não há domínio ou imagem social inventados.
+Edite título, descrição e Open Graph básico em `index.html`. `og:url` e a URL canônica apontam para https://portfolio-drab-nine-34.vercel.app; atualize-as se o domínio mudar. Substitua `public/favicon.svg` para mudar o favicon; se alterar o formato ou caminho, atualize o HTML. Não há imagem social inventada.
 
 A interface inclui link para pular ao conteúdo, landmarks semânticos, foco visível, botões de galeria com rótulos, menu mobile com `aria-expanded` e fechamento via Escape, textos alternativos e respeito a `prefers-reduced-motion`. Os layouts se adaptam a celular, tablet e desktop.
 

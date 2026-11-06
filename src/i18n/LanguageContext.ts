@@ -1,11 +1,15 @@
 import { createContext, useContext } from 'react'
 
 export type Language = 'pt' | 'en'
-export const LanguageContext = createContext<{
+
+export interface LanguageContextValue {
   language: Language
   setLanguage: (language: Language) => void
+  /** Returns the English copy when EN is active; Portuguese text is the key. */
   t: (text: string) => string
-} | null>(null)
+}
+
+export const LanguageContext = createContext<LanguageContextValue | null>(null)
 
 export function useLanguage() {
   const value = useContext(LanguageContext)

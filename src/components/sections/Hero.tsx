@@ -1,22 +1,80 @@
-import { useLanguage } from '../../hooks/useLanguage'
-import { ArrowDown, ArrowUpRight, Github, Terminal } from 'lucide-react'
+import { Fragment } from 'react'
+import { ArrowDown, ArrowUpRight, Github, MapPin, Terminal } from 'lucide-react'
 import { profile } from '../../data/profile'
+import { sectionIds } from '../../data/navigation'
+import { useLanguage } from '../../i18n/LanguageContext'
 import { ExternalLink } from '../ui/ExternalLink'
+
+/** Agrupa a stack em linhas de dois itens para a janela de código. */
+function chunk<T>(items: T[], size: number) {
+  return Array.from({ length: Math.ceil(items.length / size) }, (_, index) => items.slice(index * size, index * size + size))
+}
+
+function CodeWindow() {
+  const { t } = useLanguage()
+  const rows = chunk(profile.heroStack, 2)
+
+  return (
+    <div className="code-window" role="img" aria-label={t('Resumo das tecnologias e áreas de atuação')}>
+      <div className="code-bar">
+        <div className="window-dots"><i /><i /><i /></div>
+        <span>Developer.java</span>
+        <Terminal size={15} />
+      </div>
+      <div className="code-body" aria-hidden="true">
+        <p className="code-comment">{t('// Muito além de escrever código.')}</p>
+        <p><b>var</b> developer = Developer.builder()</p>
+        <p className="indent">.name(<em>"{profile.shortName}"</em>)</p>
+        <p className="indent">.focus(<em>"Backend Java & Full Stack"</em>)</p>
+        <p className="indent">.stack(List.of(</p>
+        {rows.map((row, rowIndex) => (
+          <p className="indent-double" key={row.join()}>
+            {row.map((item, index) => (
+              <Fragment key={item}>
+                {index > 0 && ', '}<em>"{item}"</em>
+              </Fragment>
+            ))}
+            {rowIndex < rows.length - 1 ? ',' : ''}
+          </p>
+        ))}
+        <p className="indent">))</p>
+        <p className="indent">.mindset(<em>{t('"Sempre aprendendo"')}</em>)</p>
+        <p className="indent">.build();</p>
+        <p className="code-last"><span>developer</span>.ship()<span className="cursor">_</span></p>
+      </div>
+      <div className="code-footer"><span className="status-dot" /> {t('Da ideia à aplicação.')}</div>
+    </div>
+  )
+}
 
 export function Hero() {
   const { t } = useLanguage()
-  return <section id="inicio" className="hero shell">
-    <div className="hero-copy"><p className="eyebrow"><span className="status-dot" />{' '}{t("CÓDIGO, CONTEXTO E SOLUÇÕES.")}</p>
-      <h1>Marcos Vinicius<br /><span>Scheffer da Conceição<span className="accent">.</span></span></h1>
-      <p className="hero-role">{t(profile.role)}</p>
-      <p className="hero-description">{t("Transformando desafios reais em aplicações bem construídas. Do backend com Java e Python à experiência completa com React, banco de dados e infraestrutura.")}</p>
-      <div className="flex flex-wrap gap-3"><a className="button button-primary" href="#projetos">{t("Ver projetos")}{' '}<ArrowUpRight size={18} /></a><ExternalLink href={profile.github} className="button button-secondary"><Github size={18} /> GitHub</ExternalLink></div>
-    </div>
-    <div className="code-window" aria-label={t("Resumo das tecnologias e áreas de atuação")}>
-      <div className="code-bar"><div className="window-dots"><i /><i /><i /></div><span>developer.ts</span><Terminal size={15} /></div>
-      <div className="code-body"><p className="code-comment">{t("// Muito além de escrever código.")}</p><p><b>const</b> developer = {'{'}</p><p className="indent">name: <em>'Marcos Scheffer'</em>,</p><p className="indent">focus: <em>'Backend & Full Stack'</em>,</p><p className="indent">stack: [</p><p className="indent-double"><em>'Java'</em>, <em>'Spring Boot'</em>,</p><p className="indent-double"><em>'Python'</em>, <em>'React'</em>,</p><p className="indent-double"><em>'PostgreSQL'</em>, <em>'Docker'</em></p><p className="indent">],</p><p className="indent">mindset: <em>{t("'Sempre aprendendo'")}</em></p><p>{'};'}</p><p className="code-last"><span>developer</span>.build()<span className="cursor">_</span></p></div>
-      <div className="code-footer"><span className="status-dot" />{' '}{t("Da ideia à aplicação.")}</div>
-    </div>
-    <div className="hero-bottom"><span>BACKEND FIRST. FULL STACK MINDSET.</span><a href="#sobre">{t("Explore o portfólio")}{' '}<ArrowDown size={16} /></a></div>
-  </section>
+
+  return (
+    <section id={sectionIds.hero} className="hero shell">
+      <div className="hero-copy">
+        <p className="eyebrow"><span className="status-dot" /> {t('CÓDIGO, CONTEXTO E SOLUÇÕES.')}</p>
+        <h1>Marcos Vinicius<br /><span>Scheffer da Conceição<span className="accent">.</span></span></h1>
+        <p className="hero-role">{t(profile.role)}</p>
+        <p className="hero-description">
+          {t('Transformando desafios reais em aplicações bem construídas. APIs com Java e Spring Boot, dados em PostgreSQL e entrega com Docker, além de interfaces em React quando o projeto pede.')}
+        </p>
+        <ul className="hero-meta">
+          <li><span className="status-dot" /> {t(profile.availability)}</li>
+          <li><MapPin size={14} /> {t(profile.location)}</li>
+        </ul>
+        <div className="flex flex-wrap gap-3">
+          <a className="button button-primary" href={`#${sectionIds.projects}`}>{t('Ver projetos')} <ArrowUpRight size={18} /></a>
+          <ExternalLink href={profile.github} className="button button-secondary"><Github size={18} /> GitHub</ExternalLink>
+        </div>
+      </div>
+
+      <CodeWindow />
+
+      <div className="hero-bottom">
+        <span>BACKEND FIRST. FULL STACK MINDSET.</span>
+        <a href={`#${sectionIds.about}`}>{t('Explore o portfólio')} <ArrowDown size={16} /></a>
+      </div>
+    </section>
+  )
 }

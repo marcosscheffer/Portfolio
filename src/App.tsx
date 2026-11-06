@@ -1,4 +1,4 @@
-import { useLanguage } from './hooks/useLanguage'
+import { useLanguage } from './i18n/LanguageContext'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { Hero } from './components/sections/Hero'
@@ -10,5 +10,20 @@ import { Contact } from './components/sections/Contact'
 
 export default function App() {
   const { t } = useLanguage()
-  return <><a href="#conteudo" className="skip-link">{t("Pular para o conteúdo")}</a><Header /><main id="conteudo"><Hero /><About /><Technologies /><Projects /><Experience /><Contact /></main><Footer /></>
+
+  return (
+    <>
+      <a href="#conteudo" className="skip-link">{t('Pular para o conteúdo')}</a>
+      <Header />
+      <main id="conteudo">
+        <Hero />
+        <About />
+        <Technologies />
+        <Projects />
+        <Experience />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  )
 }

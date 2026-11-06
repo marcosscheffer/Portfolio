@@ -4,6 +4,11 @@ export interface ProjectScreenshot {
   caption: string
 }
 
+export interface ProjectLink {
+  label: string
+  href: string
+}
+
 export interface Project {
   id: string
   name: string
@@ -12,8 +17,13 @@ export interface Project {
   details: string
   highlights?: string[]
   technologies: string[]
-  screenshots: ProjectScreenshot[]
+  /** Galeria opcional. Projetos sem capturas são exibidos em cards compactos. */
+  screenshots?: ProjectScreenshot[]
   repositoryUrl?: string
+  /** Repositórios relacionados, como backend e frontend separados. */
+  relatedLinks?: ProjectLink[]
   liveUrl?: string
   featured?: boolean
+  /** Sistema de uso interno, sem demonstração pública. */
+  internal?: boolean
 }
