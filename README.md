@@ -97,26 +97,11 @@ Os projetos atuais (Estik v2, SpellTrade Batch e Clinic API) foram descritos a p
 
 ## Screenshots do Estik
 
-As cinco telas fornecidas estão em `dashboard.webp`, `chamados.webp`, `unidades.webp`, `setores.webp` e `login.webp` (convertidas de PNG para WebP, de ~4 MB para ~180 KB no total). As quatro telas internas foram editadas com IA para substituir identificação da conta, nomes e códigos de unidades, computador, especificações e data do registro por dados fictícios. São versões editadas para apresentação, não reproduções pixel a pixel. As legendas identificam os dados fictícios. A nova tela de login em tema escuro foi mantida como enviada, com campos vazios. Os originais com dados internos não são incluídos no projeto. O diagrama `architecture.svg` abre a galeria, seguido pelas cinco telas. Para novas imagens revisadas, use por exemplo:
+A galeria abre com o diagrama `architecture.svg`, seguido de oito capturas da versão 2 do Estik em `src/assets/images/projects/estik/` (WebP): `dashboard`, `chamados`, `chamado-chat`, `mapa`, `computador`, `estoque-saldos`, `estoque-movimentacoes` e `login`.
 
-```text
-src/assets/images/projects/estik/dashboard.webp
-src/assets/images/projects/estik/login.webp
-```
+As capturas foram tiradas em 06/11/2026 do frontend real do Estik, em produção, com uma conta de demonstração. **Todos os dados exibidos são sintéticos:** durante a captura, cada chamada à API (exceto o login) foi respondida no próprio navegador com um conjunto de dados fictício (unidades "Unidade Centro", "Unidade Vila Nova" etc., usuários como `ana.souza` e `carla.mendes`, chamados, computadores e estoque inventados). Nada foi gravado no sistema e nenhum dado real aparece nas imagens. O nome da conta de demonstração foi trocado por `ana.souza` na tela.
 
-Importe-as em `src/data/projects.ts` e substitua ou amplie `screenshots`:
-
-```tsx
-import dashboard from '../assets/images/projects/estik/dashboard.webp'
-import login from '../assets/images/projects/estik/login.webp'
-
-screenshots: [
-  { src: dashboard, alt: 'Painel do Estik com dados fictícios.', caption: '01 / Dashboard' },
-  { src: login, alt: 'Tela de autenticação do Estik sem dados preenchidos.', caption: '02 / Login' },
-],
-```
-
-Prefira WebP otimizado e preserve a proporção original das capturas. As imagens usam `object-fit: contain` para não cortar conteúdo e carregamento lazy na galeria.
+Para trocar ou acrescentar capturas, salve o arquivo nessa pasta, importe-o em `src/data/projects.ts` e adicione a legenda e o texto alternativo (com tradução em `src/i18n/translations.ts`). Prefira WebP; as imagens usam `object-fit: contain` e carregamento lazy.
 
 ### Conteúdo técnico do Estik
 

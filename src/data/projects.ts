@@ -2,8 +2,11 @@ import type { Project } from '../types/project'
 import architecture from '../assets/images/projects/estik/architecture.svg'
 import dashboard from '../assets/images/projects/estik/dashboard.webp'
 import tickets from '../assets/images/projects/estik/chamados.webp'
-import units from '../assets/images/projects/estik/unidades.webp'
-import departments from '../assets/images/projects/estik/setores.webp'
+import ticketChat from '../assets/images/projects/estik/chamado-chat.webp'
+import map from '../assets/images/projects/estik/mapa.webp'
+import computer from '../assets/images/projects/estik/computador.webp'
+import balances from '../assets/images/projects/estik/estoque-saldos.webp'
+import movements from '../assets/images/projects/estik/estoque-movimentacoes.webp'
 import login from '../assets/images/projects/estik/login.webp'
 
 export const projects: Project[] = [
@@ -26,11 +29,14 @@ export const projects: Project[] = [
     internal: true,
     screenshots: [
       { src: architecture, alt: 'Diagrama ilustrativo da arquitetura do Estik: API Spring Boot e PostgreSQL em containers Docker.', caption: '01 / Arquitetura da aplicação' },
-      { src: dashboard, alt: 'Painel do Estik com resumo operacional e indicadores substituídos por dados de demonstração.', caption: '02 / Visão geral · Dados fictícios' },
-      { src: tickets, alt: 'Central de chamados do Estik com busca, filtros por prioridade e status e conta de demonstração.', caption: '03 / Chamados · Dados fictícios' },
-      { src: units, alt: 'Cadastro de unidades do Estik com nomes e códigos fictícios: Unidade Alfa e Unidade Beta.', caption: '04 / Unidades · Dados fictícios' },
-      { src: departments, alt: 'Setor de testes com computador fictício, especificações de exemplo e histórico de movimentação sanitizado.', caption: '05 / Setores e equipamentos · Dados fictícios' },
-      { src: login, alt: 'Tela de login do Estik em tema escuro, com campos de usuário e senha vazios.', caption: '06 / Login' },
+      { src: dashboard, alt: 'Painel inicial do Estik com contadores de chamados, distribuição por status e gráfico de chamados por mês.', caption: '02 / Painel · Dados fictícios' },
+      { src: tickets, alt: 'Lista de chamados do Estik com filtros por status, prioridade, área e unidade.', caption: '03 / Chamados · Dados fictícios' },
+      { src: ticketChat, alt: 'Detalhe de um chamado em andamento, com histórico de status e chat em tempo real entre solicitante e técnico.', caption: '04 / Chamado com chat em tempo real · Dados fictícios' },
+      { src: map, alt: 'Mapa do Estik com unidades, departamentos, computadores e itens em estoque em árvore.', caption: '05 / Mapa de unidades e departamentos · Dados fictícios' },
+      { src: computer, alt: 'Detalhe de um computador com hardware, localização e histórico de serviços.', caption: '06 / Computador e histórico · Dados fictícios' },
+      { src: balances, alt: 'Saldos de estoque por item, com alerta para itens abaixo do mínimo.', caption: '07 / Saldos de estoque · Dados fictícios' },
+      { src: movements, alt: 'Linha do tempo de movimentações de estoque: entradas, saídas, transferências e ajustes.', caption: '08 / Movimentações de estoque · Dados fictícios' },
+      { src: login, alt: 'Tela de login do Estik em tema escuro, com campos vazios.', caption: '09 / Login' },
     ],
   },
   {
