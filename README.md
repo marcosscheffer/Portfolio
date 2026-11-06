@@ -93,7 +93,14 @@ Edite apenas a lista em `src/data/projects.ts`. O contrato está em `src/types/p
 }
 ```
 
-Os projetos atuais (Estik v2, SpellTrade Batch e Clinic API) foram descritos a partir dos READMEs públicos dos repositórios em 06/11/2026.
+Os projetos atuais (Estik v2 e SpellTrade Batch) foram descritos a partir dos READMEs públicos dos repositórios em 06/11/2026.
+
+`snippet` (opcional) exibe um trecho real de código no card, com realce de sintaxe Java, legenda e link para o arquivo completo. No projeto em destaque o trecho aparece abaixo do card; nos demais, ao lado do texto. Copie o trecho do repositório em vez de reescrevê-lo, para que o portfólio mostre código que existe de fato.
+
+## Currículo e prévia para redes sociais
+
+- O currículo fica em `public/curriculo-marcos-scheffer.pdf` e é baixado pelos botões do Hero e do contato. Para atualizar, substitua o arquivo mantendo o nome, ou altere `resume` em `src/data/profile.ts`. O PDF é público: confira os dados de contato antes de publicar.
+- A imagem de prévia (Open Graph, 1200×630) está em `public/og-image.png` e é referenciada com URL absoluta em `index.html`. Se o domínio mudar, atualize `og:image`, `twitter:image`, `og:url` e a URL canônica.
 
 ## Screenshots do Estik
 
@@ -133,7 +140,7 @@ Não são necessárias variáveis de ambiente nem `vercel.json`. A navegação u
 
 ## SEO e acessibilidade
 
-Edite título, descrição e Open Graph básico em `index.html`. `og:url` e a URL canônica apontam para https://portfolio-drab-nine-34.vercel.app; atualize-as se o domínio mudar. Substitua `public/favicon.svg` para mudar o favicon; se alterar o formato ou caminho, atualize o HTML. Não há imagem social inventada.
+Edite título, descrição e Open Graph básico em `index.html`. `og:url` e a URL canônica apontam para https://portfolio-drab-nine-34.vercel.app; atualize-as se o domínio mudar. Substitua `public/favicon.svg` para mudar o favicon; se alterar o formato ou caminho, atualize o HTML. 
 
 A interface inclui link para pular ao conteúdo, landmarks semânticos, foco visível, botões de galeria com rótulos, menu mobile com `aria-expanded` e fechamento via Escape, textos alternativos e respeito a `prefers-reduced-motion`. Os layouts se adaptam a celular, tablet e desktop.
 

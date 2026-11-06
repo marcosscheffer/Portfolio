@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
+import { ArrowUpRight, FileText, Github, Linkedin, Mail } from 'lucide-react'
 import { profile } from '../../data/profile'
 import { sectionIds } from '../../data/navigation'
 import { useLanguage } from '../../i18n/LanguageContext'
@@ -19,6 +19,9 @@ export function Contact() {
         {profile.email
           ? <a href={`mailto:${profile.email}`}><Mail size={20} /> {t('E-mail')} <ArrowUpRight size={17} /></a>
           : <ExternalLink><Mail size={20} /> {t('E-mail')} <ArrowUpRight size={17} /></ExternalLink>}
+        {profile.resume && (
+          <a href={profile.resume} download aria-label={t('Baixar currículo (PDF)')}><FileText size={20} /> {t('Currículo')} <ArrowUpRight size={17} /></a>
+        )}
       </div>
       {!hasAnyChannel && <p className="contact-pending">{t('Canais de contato em breve.')}</p>}
     </section>

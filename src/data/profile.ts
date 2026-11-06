@@ -13,6 +13,8 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/marcos-scheffer-899558228/',
   email: 'marcosscheffer2989@gmail.com',
   website: 'https://portfolio-drab-nine-34.vercel.app',
+  /** Currículo em PDF servido a partir de `public/`. Vazio = botão oculto. */
+  resume: '/curriculo-marcos-scheffer.pdf',
   /** Tecnologias exibidas na janela de código do Hero. */
   heroStack: ['Java', 'Spring Boot', 'PostgreSQL', 'Flyway', 'Docker', 'Maven'],
 }

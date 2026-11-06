@@ -3,11 +3,12 @@ import { useLanguage } from '../../i18n/LanguageContext'
 import type { Project } from '../../types/project'
 import { ExternalLink } from '../ui/ExternalLink'
 import { TagList } from '../ui/TagList'
+import { CodeBlock } from './CodeBlock'
 import { ProjectGallery } from './ProjectGallery'
 
 interface Props {
   project: Project
-  /** Card compacto, sem galeria, usado na grade de outros projetos. */
+  /** Card sem galeria, usado para os demais projetos. O trecho de código fica ao lado do texto. */
   compact?: boolean
 }
 
@@ -15,7 +16,7 @@ export function ProjectCard({ project, compact = false }: Props) {
   const { t } = useLanguage()
 
   return (
-    <article className={compact ? 'project-card project-card--compact' : 'project-card'}>
+    <article className={`project-card${compact ? ' project-card--compact' : ''}${project.snippet ? ' has-snippet' : ''}`}>
       {!compact && <ProjectGallery name={project.name} screenshots={project.screenshots ?? []} />}
 
       <div className="project-copy">
@@ -50,6 +51,8 @@ export function ProjectCard({ project, compact = false }: Props) {
           <p className="privacy-note"><LockKeyhole size={14} /> {t('Uso interno. Sem demonstração pública.')}</p>
         )}
       </div>
+
+      {project.snippet && <div className="project-code"><CodeBlock snippet={project.snippet} /></div>}
     </article>
   )
 }

@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { ArrowDown, ArrowUpRight, Github, MapPin, Terminal } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, FileText, Github, MapPin, Terminal } from 'lucide-react'
 import { profile } from '../../data/profile'
 import { sectionIds } from '../../data/navigation'
 import { useLanguage } from '../../i18n/LanguageContext'
@@ -66,6 +66,11 @@ export function Hero() {
         <div className="flex flex-wrap gap-3">
           <a className="button button-primary" href={`#${sectionIds.projects}`}>{t('Ver projetos')} <ArrowUpRight size={18} /></a>
           <ExternalLink href={profile.github} className="button button-secondary"><Github size={18} /> GitHub</ExternalLink>
+          {profile.resume && (
+            <a href={profile.resume} className="button button-secondary" download aria-label={t('Baixar currículo (PDF)')}>
+              <FileText size={18} /> {t('Currículo')}
+            </a>
+          )}
         </div>
       </div>
 

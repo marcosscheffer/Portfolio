@@ -9,6 +9,16 @@ export interface ProjectLink {
   href: string
 }
 
+export interface CodeSnippet {
+  /** Caminho do arquivo no repositório, exibido no cabeçalho do bloco. */
+  file: string
+  /** Frase curta sobre o que o trecho mostra. */
+  caption: string
+  code: string
+  /** Link para o arquivo completo no GitHub. */
+  href?: string
+}
+
 export interface Project {
   id: string
   name: string
@@ -22,6 +32,8 @@ export interface Project {
   repositoryUrl?: string
   /** Repositórios relacionados, como o repositório da API. */
   relatedLinks?: ProjectLink[]
+  /** Trecho real de código do repositório, exibido no card. */
+  snippet?: CodeSnippet
   liveUrl?: string
   featured?: boolean
   /** Sistema de uso interno, sem demonstração pública. */

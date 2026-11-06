@@ -25,6 +25,38 @@ export const projects: Project[] = [
     technologies: ['Java 25', 'Spring Boot', 'Spring Security', 'JWT', 'PostgreSQL', 'Flyway', 'Swagger / OpenAPI', 'Docker Compose'],
     repositoryUrl: 'https://github.com/marcosscheffer/estik-project-v2',
     relatedLinks: [{ label: 'API', href: 'https://github.com/marcosscheffer/estik-java-api-v2' }],
+    snippet: {
+      file: 'ticket/application/usecases/AssumeTicketUseCase.java',
+      caption: 'Caso de uso que depende só de portas: assume o chamado, abre o chat e publica um evento de domínio.',
+      href: 'https://github.com/marcosscheffer/estik-java-api-v2/blob/main/src/main/java/com/marcos/estik/ticket/application/usecases/AssumeTicketUseCase.java',
+      code: `@Override
+@Transactional
+public TicketView execute(UUID ticketId, AuthenticatedUser principal) {
+    Ticket ticket = ticketRepositoryPort.findTicketById(ticketId);
+    TicketHistory ticketHistory = TicketHistory.create(
+        ticket.getId(),
+        StatusEnum.PROGRESS,
+        ticket.getTicketType()
+    );
+
+    UUID chatId = loadTicketCreateChatPort.execute();
+    ticket.assignTo(principal.id(), chatId);
+    loadTicketCreateParticipantPort.execute(ticket.getAssigneeId(), chatId);
+    loadTicketCreateParticipantPort.execute(ticket.getRequesterId(), chatId);
+
+    ticketRepositoryPort.save(ticket);
+    ticketHistoryRepositoryPort.save(ticketHistory);
+    ticketEventPublisherPort.execute(
+        new TicketAssumedNotifyEvent(
+            ticket.getId(),
+            ticket.getTitle(),
+            ticket.getRequesterId(),
+            principal.id()
+        )
+    );
+    // ...monta e devolve a TicketView
+}`,
+    },
     featured: true,
     internal: true,
     screenshots: [
@@ -53,20 +85,30 @@ export const projects: Project[] = [
     ],
     technologies: ['Java 25', 'Spring Boot', 'Spring Batch', 'Spring Data JPA', 'PostgreSQL', 'Flyway', 'Jackson', 'Docker Compose'],
     repositoryUrl: 'https://github.com/marcosscheffer/SpellTrade-batch',
-  },
-  {
-    id: 'clinic-api',
-    name: 'Clinic API',
-    category: 'API REST · Projeto de estudo',
-    description: 'Gestão de médicos e pacientes com Spring Boot e MySQL.',
-    details: 'API REST para o cadastro de médicos e pacientes de uma clínica, com listagem paginada, validação de entrada e exclusão lógica para preservar o histórico dos registros.',
-    highlights: [
-      'CRUD de médicos e pacientes com endereço e dados de contato.',
-      'Validação com Jakarta Validation e paginação nas listagens.',
-      'Soft delete por flag de atividade e migrações com Flyway.',
-    ],
-    technologies: ['Java', 'Spring Boot', 'Spring Data JPA', 'Hibernate', 'MySQL', 'Flyway', 'Maven'],
-    repositoryUrl: 'https://github.com/marcosscheffer/clinic-api',
+    snippet: {
+      file: 'config/step/CardStepConfig.java',
+      caption: 'Step tolerante a falhas: chunks de 500 cartas, retry em erros transitórios e skip de registros inválidos.',
+      href: 'https://github.com/marcosscheffer/SpellTrade-batch/blob/main/src/main/java/com/marcos/cards_batch/config/step/CardStepConfig.java',
+      code: `@Bean
+public Step cardStep(JobRepository jobRepository) {
+    return new StepBuilder("cardStep", jobRepository)
+        .<ScryfallCardDto, CardJdbc>chunk(500)
+        .reader(scryfallStreamReader)
+        .processor(cardProcessor)
+        .writer(cardWriter)
+        .faultTolerant()
+        .retry(CannotAcquireLockException.class)
+        .retry(TransientDataAccessException.class)
+        .retry(SQLException.class)
+        .retryLimit(3)
+        .skip(Exception.class)
+        .skipLimit(100)
+        .listener(stepSummaryListener)
+        .listener(retryBatchListener)
+        .listener(skipCardListener)
+        .build();
+}`,
+    },
   },
 ]
 
